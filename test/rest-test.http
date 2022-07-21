@@ -1,0 +1,150 @@
+@hostname = localhost
+@port = 8080
+@host = http://{{hostname}}:{{port}}
+@contentType = application/json
+
+###
+GET {{host}}/
+Content-Type: {{contentType}}
+
+###
+POST {{host}}/api/user/register
+Content-Type: {{contentType}}
+
+{
+  "username": "tester2",
+  "email": "tester2@test.dev",
+  "password": "123456"
+}
+
+###
+POST {{host}}/api/user/login
+Content-Type: {{contentType}}
+
+{
+  "email": "tester@test.dev",
+  "password": "123456"
+}
+
+###
+GET {{host}}/api/user
+Authorization: Bearer 
+
+###
+PUT {{host}}/api/user
+Authorization: Bearer 
+Content-Type: {{contentType}}
+
+{
+  "password": ""
+}
+
+###
+GET {{host}}/api/user/profile
+Authorization: Bearer
+
+###
+GET {{host}}/api/user/get-history
+Authorization: Bearer
+
+
+###
+GET {{host}}/api/current-user
+Authorization: Bearer 
+
+###
+DELETE {{host}}/api/auth/signout
+Authorization: Bearer 
+
+###
+POST {{host}}/api/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": ""
+}
+
+###
+GET {{host}}/api/profiles/tester2
+Authorization: Bearer 
+
+###
+POST {{host}}/api/profiles/tester2/follow
+Authorization: Bearer 
+
+###
+DELETE  {{host}}/api/profiles/tester2/follow
+Authorization: Bearer 
+
+###
+GET {{host}}/api/articles/how-to-train-your-dragon
+
+###
+GET {{host}}/api/articles?tag=reactjs&offset=0&limit=10
+
+###
+GET {{host}}/api/articles?author=tester&offset=0&limit=10
+
+###
+GET {{host}}/api/articles?favorited=tester&offset=0&limit=10
+
+###
+GET {{host}}/api/articles?offset=0&limit=10
+
+
+### tester
+GET {{host}}/api/articles/feed?offset=0&limit=10
+Authorization: Bearer 
+
+### tester2
+GET {{host}}/api/articles/feed?offset=0&limit=10
+Authorization: Bearer 
+
+###
+GET {{host}}/api/articles/tags
+
+###
+POST {{host}}/api/articles
+Authorization: Bearer 
+Content-Type: {{contentType}}
+
+{
+  "article": {
+    "title": "How to train your dragon",
+    "description": "Ever wonder how?",
+    "body": "You have to believe",
+    "tagList": ["reactjs", "angularjs", "dragons"]
+  }
+}
+
+###
+POST {{host}}/api/articles/how-to-train-your-dragon/favorite
+Authorization: Bearer 
+
+###
+DELETE {{host}}/api/articles/how-to-train-your-dragon/favorite
+Authorization: Bearer 
+
+###
+GET {{host}}/api/tags
+
+###
+POST {{host}}/api/articles/how-to-train-your-dragon/comments
+Authorization: Bearer 
+Content-Type: {{contentType}}
+  
+{
+  "comment": {
+    "body": "Tis a good article"
+  }
+}
+
+###
+GET {{host}}/api/articles/how-to-train-your-dragon/comments
+Authorization: Bearer 
+
+###
+DELETE {{host}}/api/articles/how-to-train-your-dragon/comments/uuid
+Authorization: Bearer 
+
+###
